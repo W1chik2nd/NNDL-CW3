@@ -1,0 +1,11 @@
+# Measured on feng-glinux-02, 2026-11-19; condaenv/dl2026/2026-11-03
+# Python 3.14.10 (interpreter version, not a pip package)
+# Linux with an NVIDIA GPU: install as below.
+# macOS or CPU-only machines: the +cu130 builds do not exist there; instead run
+#   pip install torch==2.14.1 torchvision==0.29.1 numpy==2.5.4 matplotlib==3.11.2 jupyter
+--extra-index-url https://download.pytorch.org/whl/cu130
+torch==2.14.1+cu130
+torchvision==0.29.1+cu130
+numpy==2.5.4
+matplotlib==3.11.2
+jupyter
