@@ -12,20 +12,6 @@ Can a 32-block residual MLP predict the training loss of a 16-block MLP at the s
 | D | 16-block runs, effective-depth prediction test (NB2 §8), conclusions with A |
 | E | Teaching notebook, meeting and AI logs, video and reader feedback |
 
-## D · stage 0
-
-Run from the repository root using Python 3 (no GPU, PyTorch or dataset required):
-
-```sh
-python3 tests/test_effective_depth.py --demo
-python3 -m unittest discover -s tests
-```
-
-The demo uses **synthetic loss values only**. Four 16-block conditions use an exact
-32-block partner, two use interpolation in log effective depth, and one is outside
-the range. No extrapolation, inference or files in `results/`. The test runner
-executes the analysis cell from NB2 without running the unfinished training cells.
-
 ## Handoff
 
 1. Run a short end-to-end training job on the lab machine.
