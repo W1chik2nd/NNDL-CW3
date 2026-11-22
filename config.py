@@ -73,9 +73,7 @@ CALIB_SEED = 1                   # fixes the 512-image calibration batch
 N_VAL = 10_000
 N_CALIB = 512
 
-# ---- Analysis -------------------------------------------------------------------
-BOOTSTRAP_SAMPLES = 2000         # resampling seeds within each condition
-BOOTSTRAP_SEED = 0
+# ---- Final-run seeds --------------------------------------------------------
 
 
 def final_seeds(depth: int, alpha: float) -> tuple:

@@ -298,24 +298,6 @@ def summarise(records: list[dict], metric: str, by=("depth", "width", "alpha")) 
     return rows
 
 
-def bootstrap_means(values, n_boot: int = 2000, seed: int = 0) -> np.ndarray:
-    """Means of `n_boot` resamples (with replacement) of `values`, e.g. the seed-level
-    results of one condition. Combine the outputs of several conditions to get a
-    bootstrap distribution for any difference or prediction error built from means."""
-    values = np.asarray(values, dtype=float)
-    if values.size == 0:
-        raise ValueError("no values to resample")
-    rng = np.random.default_rng(seed)
-    idx = rng.integers(0, values.size, size=(n_boot, values.size))
-    return values[idx].mean(axis=1)
-
-
-def percentile_interval(samples, level: float = 0.95) -> tuple[float, float]:
-    """Central percentile interval of a bootstrap distribution."""
-    lo = (1 - level) / 2 * 100
-    return tuple(float(v) for v in np.percentile(np.asarray(samples, dtype=float), [lo, 100 - lo]))
-
-
 # ---------------------------------------------------------------------------
 # Plotting
 # ---------------------------------------------------------------------------
