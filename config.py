@@ -55,9 +55,9 @@ PARAM_MATCHED = {"depth": 16, "width": 362, "alpha": 0.0}
 OPTIMISER = "SGD"
 MOMENTUM = 0.9
 BATCH_SIZE = 128
-EPOCHS = 12                      # raised from 6 in NB1 §7.1: the loss was still dropping at epoch 6
+EPOCHS = 6                       # the standard budget of the design (research note §6)
 EARLY_EPOCH = 1                  # secondary metric: training loss after this epoch (speed)
-EPOCHS_SENSITIVITY = 24          # twice the main budget, so the check still asks a new question
+EPOCHS_SENSITIVITY = 12          # sensitivity check (32 blocks, selected lr, final seeds)
 
 # ---- Nuisance hyperparameter tuned per condition ---------------------------
 LR_GRID = (3e-4, 1e-3, 2e-3, 3e-3, 5e-3, 1e-2, 2e-2, 3e-2)

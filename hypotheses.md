@@ -35,7 +35,7 @@ explain all of it.
 
 ## Primary and secondary metrics
 
-- **Primary:** final train loss after 12 epochs, recomputed in `eval` mode on the whole training
+- **Primary:** final train loss after 6 epochs, recomputed in `eval` mode on the whole training
   set (never a running average over training batches).
 - **Secondary 1:** train loss after epoch 1. This shows training *speed*, and it still tells
   conditions apart when all the 6-epoch losses have flattened.
@@ -115,7 +115,7 @@ the final loss.
 - τ is fixed **after** the baseline run and before the main sweep, then written on the line below.
   The rule is frozen here; only the number is still missing.
 
-  `τ = 1.25 × L_base = 0.219348`  (12-epoch baseline: L_base = 0.175479 at lr = 5e-3, seed 0)
+  `τ = 1.25 × L_base = 0.316131`  (6-epoch baseline: L_base = 0.252905 at lr = 2e-3, seed 0)
 
 - Why 1.25: the question is "can this condition be trained at all with a sensible learning rate",
   not "does it reach the very best loss". A 25% margin still separates big failures from small
@@ -137,14 +137,15 @@ the final loss.
 
 - 13 conditions. 32 blocks: α ∈ {0, 0.5, 1/√2, 0.791, 0.9, 0.97}. 16 blocks:
   α ∈ {0, 0.5, 1/√2, 0.787, 0.9, 0.939, 0.97} (`config.ALPHAS`).
-- Main budget 12 epochs (`config.EPOCHS`). NB1 §7.1 records why: the loss was still dropping at
-  epoch 6 by the group's own 5% rule, and it is still dropping at 12 — keeping 12 is a recorded
-  departure from the literal rule, on the grounds that the ranking, not the level, is what the
-  analysis uses, and the 24-epoch sensitivity check tests the shape directly.
+- Main budget 6 epochs (`config.EPOCHS`), the fixed training budget of the design. NB1 §7.1
+  records that the loss is still falling at epoch 6 by the group's own 5% rule, and why 6 is kept:
+  every comparison is between conditions on the same budget, so the ordering is what has to be
+  stable, not the absolute level. The flattening question is carried by the 12-epoch sensitivity
+  check instead. That is a recorded departure from the literal rule and the freeze gate confirms it.
 - Final seeds 1–3. The eight matched-pair conditions use seeds 1–5 (`config.final_seeds`).
 - Data split (seed 0) and the 512-image calibration batch (seed 1) are the same for every
   condition. A seed only changes the weight initialisation and the batch order.
-- Sensitivity check: 32 blocks, all six α, the selected learning rate, 24 epochs
+- Sensitivity check: 32 blocks, all six α, the selected learning rate, 12 epochs
   (`config.EPOCHS_SENSITIVITY`), seeds 1–3. It asks whether the *shape* of loss vs α survives
   longer training, not only whether training is slower.
 
