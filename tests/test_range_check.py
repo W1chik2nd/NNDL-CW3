@@ -30,7 +30,8 @@ RANGE_SEEDS = NS["RANGE_SEEDS"]
 RANGE_LRS = NS["RANGE_LRS"]
 RANGE_ALPHAS = NS["RANGE_ALPHAS"]
 TAG = NS["RANGE_TAG"]
-ANCHORS = (C.EARLY_EPOCH, C.EPOCHS, RANGE_EPOCHS)
+ANCHORS = (1, 6, 12)          # must match RANGE_REPORT_EPOCHS in the notebook
+assert tuple(ANCHORS) == tuple(NS["RANGE_REPORT_EPOCHS"]), "anchors drifted"
 
 
 def make_curve(v_early, v_mid, v_final):
