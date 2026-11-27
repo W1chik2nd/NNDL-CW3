@@ -1,0 +1,22 @@
+{
+ "width": 256,
+ "depth": 16,
+ "alpha": 0.7874007874011811,
+ "lr": 0.27,
+ "seed": 0,
+ "epochs": 6,
+ "train_loss": [],
+ "val_loss": [],
+ "train_acc": [],
+ "val_acc": [],
+ "final_train_loss": null,
+ "diverged": true,
+ "seconds": 0.018843375029973686,
+ "_meta": {
+  "saved_at": "2026-11-27 01:05:05",
+  "git_commit": "8381cc9",
+  "torch": "2.15.0",
+  "device": "mps",
+  "tag": ""
+ }
+}
