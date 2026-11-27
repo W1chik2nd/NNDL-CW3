@@ -1,0 +1,29 @@
+{
+ "width": 256,
+ "depth": 32,
+ "alpha": 0.7071067811865476,
+ "lr": 0.03,
+ "seed": 0,
+ "epochs": 6,
+ "train_loss": [
+  1.4671642993164062
+ ],
+ "val_loss": [
+  1.492668212890625
+ ],
+ "train_acc": [
+  0.45278
+ ],
+ "val_acc": [
+  0.4421
+ ],
+ "final_train_loss": null,
+ "diverged": true,
+ "seconds": 3.2592090410000765,
+ "_meta": {
+  "saved_at": "2026-11-23 18:05:36",
+  "git_commit": "3ea5e1d",
+  "torch": "2.8.0",
+  "tag": "baseline_tune_v2"
+ }
+}

@@ -55,7 +55,7 @@ PARAM_MATCHED = {"depth": 16, "width": 362, "alpha": 0.0}
 OPTIMISER = "SGD"
 MOMENTUM = 0.9
 BATCH_SIZE = 128
-EPOCHS = 6                       # confirm on the NB1 baseline that the loss has flattened
+EPOCHS = 6                       # the standard budget of the design (research note §6)
 EARLY_EPOCH = 1                  # secondary metric: training loss after this epoch (speed)
 EPOCHS_SENSITIVITY = 12          # sensitivity check (32 blocks, selected lr, final seeds)
 

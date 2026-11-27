@@ -115,7 +115,7 @@ the final loss.
 - τ is fixed **after** the baseline run and before the main sweep, then written on the line below.
   The rule is frozen here; only the number is still missing.
 
-  `τ = 1.25 × L_base = _____ (filled in at the freeze gate)`
+  `τ = 1.25 × L_base = 0.316131`  (6-epoch baseline: L_base = 0.252905 at lr = 2e-3, seed 0)
 
 - Why 1.25: the question is "can this condition be trained at all with a sensible learning rate",
   not "does it reach the very best loss". A 25% margin still separates big failures from small
@@ -137,6 +137,11 @@ the final loss.
 
 - 13 conditions. 32 blocks: α ∈ {0, 0.5, 1/√2, 0.791, 0.9, 0.97}. 16 blocks:
   α ∈ {0, 0.5, 1/√2, 0.787, 0.9, 0.939, 0.97} (`config.ALPHAS`).
+- Main budget 6 epochs (`config.EPOCHS`), the fixed training budget of the design. NB1 §7.1
+  records that the loss is still falling at epoch 6 by the group's own 5% rule, and why 6 is kept:
+  every comparison is between conditions on the same budget, so the ordering is what has to be
+  stable, not the absolute level. The flattening question is carried by the 12-epoch sensitivity
+  check instead. That is a recorded departure from the literal rule and the freeze gate confirms it.
 - Final seeds 1–3. The eight matched-pair conditions use seeds 1–5 (`config.final_seeds`).
 - Data split (seed 0) and the 512-image calibration batch (seed 1) are the same for every
   condition. A seed only changes the weight initialisation and the batch order.

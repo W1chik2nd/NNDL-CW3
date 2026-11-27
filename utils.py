@@ -229,7 +229,7 @@ def save_result(record: dict, tag: str = "", results_dir: Path | str = RESULTS_D
     """Save one run as JSON. `record` must contain depth, alpha, lr, seed, epochs
     (and width, if it is not the default 256).
 
-    Adds the time, git commit and library versions so every cached number can
+    Adds the time, git commit, library versions and compute device so every cached number can
     be traced back to the code that produced it.
     """
     missing = [k for k in _KEY_FIELDS if k not in record]
@@ -242,7 +242,7 @@ def save_result(record: dict, tag: str = "", results_dir: Path | str = RESULTS_D
         raise FileExistsError(f"{path} exists; pass overwrite=True to replace it")
     path.parent.mkdir(parents=True, exist_ok=True)
     meta = {"saved_at": time.strftime("%Y-%m-%d %H:%M:%S"), "git_commit": git_commit(),
-            "torch": torch.__version__, "tag": tag}
+            "torch": torch.__version__, "device": str(get_device()), "tag": tag}
     payload = {**_jsonable(record), "_meta": meta}
     path.write_text(json.dumps(payload, indent=1))
     return path
